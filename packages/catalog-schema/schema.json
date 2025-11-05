@@ -1,0 +1,187 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeepPI Catalog Schema",
+  "description": "Schema for DeepPI release catalog",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Schema version"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last catalog update timestamp (ISO 8601)"
+    },
+    "releases": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/release"
+      }
+    },
+    "sets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/set"
+      }
+    },
+    "playlists": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/playlist"
+      }
+    }
+  },
+  "required": [
+    "version",
+    "updated_at",
+    "releases"
+  ],
+  "definitions": {
+    "release": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "artist": {
+          "type": "string",
+          "default": "DeepPI"
+        },
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "bpm": {
+          "type": "integer",
+          "minimum": 60,
+          "maximum": 200
+        },
+        "key": {
+          "type": "string"
+        },
+        "mood": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "genre": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "string",
+          "pattern": "^[0-9]{2}:[0-9]{2}$"
+        },
+        "cover_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "audio_mp3_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "audio_wav_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "catalog_id": {
+          "type": "string",
+          "pattern": "^DPI-[0-9]{4}-[0-9]{4}$"
+        },
+        "checksum_md5": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "slug",
+        "date",
+        "bpm",
+        "genre",
+        "cover_url",
+        "audio_mp3_url",
+        "catalog_id"
+      ]
+    },
+    "set": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "tracks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cover_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "audio_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "slug",
+        "date",
+        "audio_url"
+      ]
+    },
+    "playlist": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tracks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "title",
+        "slug",
+        "tracks"
+      ]
+    }
+  }
+}
