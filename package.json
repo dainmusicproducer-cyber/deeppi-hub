@@ -1,0 +1,22 @@
+{
+  "name": "deeppi-hub",
+  "version": "0.1.0",
+  "private": true,
+  "description": "One-Stop Distribution Hub for DeepPI releases",
+  "scripts": {
+    "dev": "cd apps/web && npm run dev",
+    "build": "cd apps/web && npm run build",
+    "upload": "node scripts/upload.js",
+    "generate-catalog": "node scripts/generate-catalog.js",
+    "validate-catalog": "node scripts/validate-catalog.js",
+    "telegram-post": "node scripts/telegram-bot.js"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}
